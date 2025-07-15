@@ -75,7 +75,7 @@ async function runAxe(url) {
             console.log('\n\n⚠️ 未检测到 WCAG 标签相关的通过项（可能所有规则都不适用或未完成检测）');
         }
         */
-        console.log(results); 
+        console.log(results);
     } finally {
         await browser.close();
     }

@@ -13,16 +13,16 @@ function logMemoryUsage() {
     console.log(`内存使用：堆总${mb(memory.heapTotal)}MB | 已用${mb(memory.heapUsed)}MB`);
 }
 
-async function crawl(url, { maxDepth = 3, maxPages = 100, memoryThreshold = 0.8 }) {
+async function crawl(url, { maxDepth = 10, maxPages = 100, memoryThreshold = 0.9 }) {
     const visitedUrls = new Set();
     const resultBuffer = [];
-    const allAbsoluteUrls = new Set();  // 新增：存储所有唯一绝对URL的Set
+    const allAbsoluteUrls = new Set();  // 存储所有唯一绝对URL的Set
     let pageCount = 0;
 
     async function recursiveCrawl(currentUrl, currentDepth) {
         if (
-            visitedUrls.has(currentUrl) || 
-            currentDepth > maxDepth || 
+            visitedUrls.has(currentUrl) ||
+            currentDepth > maxDepth ||
             pageCount >= maxPages ||
             process.memoryUsage().heapUsed / process.memoryUsage().heapTotal > memoryThreshold
         ) return;
@@ -32,26 +32,25 @@ async function crawl(url, { maxDepth = 3, maxPages = 100, memoryThreshold = 0.8 
 
         try {
             const response = await axios.get(currentUrl, {
-                timeout: 10000,
-                headers: { 'User-Agent': 'LinkCrawler/1.0' }
+                timeout: 10000
             });
 
             if (response.status === 404) {
                 console.log(`[跳过] 页面不存在: ${currentUrl}`);
                 return;
             }
-
             const $ = cheerio.load(response.data);
-            // 提取并过滤a标签（仅保留有效absoluteUrl）
+            // 提取并过滤a标签（新增#链接过滤）
             const aTags = $('a[href]').map((i, el) => {
                 const $el = $(el);
                 try {
                     const absoluteUrl = new URL($el.attr('href'), currentUrl).href;
-                    if (!absoluteUrl.startsWith('http')) return null;  // 过滤非HTTP链接
+                    // 新增：过滤带#的链接和非HTTP链接
+                    if (!absoluteUrl.startsWith('http') || absoluteUrl.includes('#')) return null;
                     return {
                         href: $el.attr('href'),
                         text: $el.text().trim().slice(0, 100),
-                        absoluteUrl  // 只保留必要字段
+                        absoluteUrl
                     };
                 } catch (error) {
                     return null;  // 无效URL直接丢弃
@@ -61,11 +60,11 @@ async function crawl(url, { maxDepth = 3, maxPages = 100, memoryThreshold = 0.8 
             // 收集所有绝对URL（自动去重）
             aTags.forEach(tag => allAbsoluteUrls.add(tag.absoluteUrl));
 
-            // 存储页面级数据（保持裁剪逻辑）
+            // 存储页面级数据
             resultBuffer.push({
                 url: currentUrl,
                 depth: currentDepth,
-                aTags: aTags.slice(0, 50)  // 单个页面最多50个标签
+                aTags: aTags.slice(0, 100)
             });
 
             console.log(`[深度${currentDepth}] 爬取成功: ${currentUrl}（累计URL：${allAbsoluteUrls.size}）`);
@@ -100,9 +99,9 @@ async function crawl(url, { maxDepth = 3, maxPages = 100, memoryThreshold = 0.8 
     await recursiveCrawl(url, 1);
     return {
         totalPages: pageCount,
-        totalUniqueUrls: allAbsoluteUrls.size,  // 新增：唯一URL总数
-        allAbsoluteUrls: Array.from(allAbsoluteUrls),  // 新增：所有唯一绝对URL数组
-        data: resultBuffer  // 保留原页面级数据（可选）
+        totalUniqueUrls: allAbsoluteUrls.size,
+        allAbsoluteUrls: Array.from(allAbsoluteUrls),
+        data: resultBuffer
     };
 }
 
@@ -138,4 +137,3 @@ app.use((req, res) => {
 app.listen(3000, () => {
     console.log('服务运行中,访问:http://localhost:3000/crawl?url=目标网址');
 });
-    

@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "node-server": "node server.js",
-    "node-axe": "node axe-puppeteer.js https://baike.baidu.com/item/%E4%B8%AD%E7%BE%8E%E5%A4%96%E9%95%BF%E4%BC%9A%E8%B0%88/63108114"
+    "node-server2": "node server2.js",
+    "node-axe": "node axe-puppeteer.js https://baike.baidu.com",
+    "node-climb": "node climb.js"
   },
   "dependencies": {
     "axe-core": "^4.10.3",
@@ -18,6 +20,7 @@
     "element-plus": "^2.9.8",
     "express": "^5.1.0",
     "puppeteer": "^24.8.1",
+    "selenium-webdriver": "^4.33.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {
