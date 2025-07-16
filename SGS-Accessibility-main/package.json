@@ -1,0 +1,34 @@
+{
+  "name": "sgs-accessibility",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "node-server": "node server.js",
+    "node-server2": "node server2.js",
+    "node-axe": "node axe-puppeteer.js https://baike.baidu.com",
+    "node-climb": "node climb.js",
+    "node-climb-new": "node climb.js && vite --port 3001 --open"
+  },
+  "dependencies": {
+    "axe-core": "^4.10.3",
+    "axios": "^1.8.4",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "element-plus": "^2.9.8",
+    "express": "^5.1.0",
+    "puppeteer": "^24.8.1",
+    "selenium-webdriver": "^4.33.0",
+    "vue": "^3.5.13",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.2",
+    "unplugin-auto-import": "^19.1.2",
+    "unplugin-vue-components": "^28.5.0",
+    "vite": "^6.3.1"
+  }
+}
