@@ -1,6 +1,6 @@
 {
-  "start_time": "2025-07-16T07:01:05.858Z",
-  "end_time": "2025-07-16T07:01:10.609Z",
+  "start_time": "2025-07-17T01:44:15.100Z",
+  "end_time": "2025-07-17T01:44:20.676Z",
   "total_urls": 170,
   "level_stats": {
     "0": 1,
@@ -10,16 +10,6 @@
     {
       "url": "https://www.runoob.com/git/git-tutorial.html",
       "level": 0,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/react/react-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/css/css-tutorial.html",
-      "level": 1,
       "status": "success"
     },
     {
@@ -33,7 +23,12 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/python3/python3-tutorial.html",
+      "url": "https://www.runoob.com/css/css-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/react/react-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -43,7 +38,27 @@
       "status": "success"
     },
     {
+      "url": "https://www.runoob.com/python3/python3-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/java/java-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
       "url": "https://www.runoob.com/cprogramming/c-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/cplusplus/cpp-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/linux/linux-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -58,17 +73,12 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/java/java-tutorial.html",
+      "url": "https://www.runoob.com/sql/sql-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/cplusplus/cpp-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/browser-history",
+      "url": "https://www.runoob.com/python/python-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -78,17 +88,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/sql/sql-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/linux/linux-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/bootstrap/bootstrap-tutorial.html",
+      "url": "https://www.runoob.com/browser-history",
       "level": 1,
       "status": "success"
     },
@@ -103,17 +103,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/python/python-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
       "url": "https://www.runoob.com/bootstrap5/bootstrap5-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/ollama/ollama-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -123,27 +113,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/bootstrap/bootstrap-v2-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/sklearn/sklearn-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/tensorflow/tensorflow-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/pytorch/pytorch-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/nlp/nlp-tutorial.html",
+      "url": "https://www.runoob.com/ollama/ollama-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -153,12 +123,32 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/git/git-workflow.html",
+      "url": "https://www.runoob.com/pytorch/pytorch-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/git/git-create-repository.html",
+      "url": "https://www.runoob.com/tensorflow/tensorflow-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/bootstrap/bootstrap-v2-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/bootstrap/bootstrap-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/sklearn/sklearn-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/nlp/nlp-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -168,12 +158,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/git/git-basic-operations.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/git/git-flow.html",
+      "url": "https://www.runoob.com/git/git-workflow.html",
       "level": 1,
       "status": "success"
     },
@@ -183,22 +168,22 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/git/git-commit-history.html",
+      "url": "https://www.runoob.com/git/git-basic-operations.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/git/git-create-repository.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/git/git-flow.html",
       "level": 1,
       "status": "success"
     },
     {
       "url": "https://www.runoob.com/git/git-tag.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/git/source-tree-intro.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/git/git-remote-repo.html",
       "level": 1,
       "status": "success"
     },
@@ -213,7 +198,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/manual/git-guide/",
+      "url": "https://www.runoob.com/git/git-remote-repo.html",
       "level": 1,
       "status": "success"
     },
@@ -228,7 +213,17 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/manual/github-git-cheat-sheet.pdf",
+      "url": "https://www.runoob.com/git/git-commit-history.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/manual/git-guide/",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/w3cnote/git-five-minutes-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -238,7 +233,12 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/w3cnote/git-five-minutes-tutorial.html",
+      "url": "https://www.runoob.com/git/source-tree-intro.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/html/html5-intro.html",
       "level": 1,
       "status": "success"
     },
@@ -253,7 +253,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/tailwindcss/tailwindcss-tutorial.html",
+      "url": "https://www.runoob.com/manual/github-git-cheat-sheet.pdf",
       "level": 1,
       "status": "success"
     },
@@ -263,7 +263,12 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/html/html5-intro.html",
+      "url": "https://www.runoob.com/foundation/foundation-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/tailwindcss/tailwindcss-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -273,7 +278,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/htmldom/htmldom-tutorial.html",
+      "url": "https://www.runoob.com/angularjs2/angularjs2-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -283,17 +288,22 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/foundation/foundation-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
       "url": "https://www.runoob.com/jquery/jquery-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/angularjs2/angularjs2-tutorial.html",
+      "url": "https://www.runoob.com/htmldom/htmldom-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/jqueryui/jqueryui-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/typescript/ts-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -308,12 +318,12 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/typescript/ts-tutorial.html",
+      "url": "https://www.runoob.com/ajax/ajax-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/ajax/ajax-tutorial.html",
+      "url": "https://www.runoob.com/echarts/echarts-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -328,7 +338,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/jqueryui/jqueryui-tutorial.html",
+      "url": "https://www.runoob.com/json/json-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -338,12 +348,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/json/json-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/echarts/echarts-tutorial.html",
+      "url": "https://www.runoob.com/ruby/ruby-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -358,32 +363,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/perl/perl-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
       "url": "https://www.runoob.com/docker/docker-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/ruby/ruby-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/jsp/jsp-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/rust/rust-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/servlet/servlet-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -393,12 +373,27 @@
       "status": "success"
     },
     {
+      "url": "https://www.runoob.com/perl/perl-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/jsp/jsp-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/servlet/servlet-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
       "url": "https://www.runoob.com/php/php-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/scala/scala-tutorial.html",
+      "url": "https://www.runoob.com/rust/rust-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -408,12 +403,17 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/data-structures/data-structures-tutorial.html",
+      "url": "https://www.runoob.com/scala/scala-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/c/c-tutorial.html",
+      "url": "https://www.runoob.com/flask/flask-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/data-structures/data-structures-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -423,17 +423,17 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/pillow/pillow-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
       "url": "https://www.runoob.com/fastapi/fastapi-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/flask/flask-tutorial.html",
+      "url": "https://www.runoob.com/c/c-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/pillow/pillow-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -453,12 +453,22 @@
       "status": "success"
     },
     {
+      "url": "https://www.runoob.com/design-pattern/design-pattern-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/vbscript/vbscript-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
       "url": "https://www.runoob.com/w3cnote/verilog-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/design-pattern/design-pattern-tutorial.html",
+      "url": "https://www.runoob.com/appml/appml-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -473,37 +483,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/mysql/mysql-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/vbscript/vbscript-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/appml/appml-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/postgresql/postgresql-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/sqlite/sqlite-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/Memcached/Memcached-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/numpy/numpy-tutorial.html",
+      "url": "https://www.runoob.com/redis/redis-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -513,7 +493,17 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/redis/redis-tutorial.html",
+      "url": "https://www.runoob.com/sqlite/sqlite-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/mysql/mysql-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/postgresql/postgresql-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -523,12 +513,12 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/r/r-tutorial.html",
+      "url": "https://www.runoob.com/scipy/scipy-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/scipy/scipy-tutorial.html",
+      "url": "https://www.runoob.com/Memcached/Memcached-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -538,22 +528,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/opencv/opencv-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/dash/dash-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/selenium/selenium-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/w3cnote/android-tutorial-intro.html",
+      "url": "https://www.runoob.com/numpy/numpy-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -563,22 +538,42 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/swift/swift-tutorial.html",
+      "url": "https://www.runoob.com/r/r-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/kotlin/kotlin-tutorial.html",
+      "url": "https://www.runoob.com/selenium/selenium-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/ionic/ionic-tutorial.html",
+      "url": "https://www.runoob.com/opencv/opencv-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
       "url": "https://www.runoob.com/jquerymobile/jquerymobile-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/swift/swift-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/dash/dash-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/w3cnote/android-tutorial-intro.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/ionic/ionic-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -593,6 +588,11 @@
       "status": "success"
     },
     {
+      "url": "https://www.runoob.com/qt/qt-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
       "url": "https://www.runoob.com/restfulapi/restful-api-tutorial.html",
       "level": 1,
       "status": "success"
@@ -603,12 +603,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/qt/qt-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/dom/dom-tutorial.html",
+      "url": "https://www.runoob.com/svn/svn-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -618,7 +613,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/svn/svn-tutorial.html",
+      "url": "https://www.runoob.com/dom/dom-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -633,12 +628,12 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/schema/schema-tutorial.html",
+      "url": "https://www.runoob.com/kotlin/kotlin-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/xlink/xlink-tutorial.html",
+      "url": "https://www.runoob.com/xquery/xquery-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -648,7 +643,12 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/xquery/xquery-tutorial.html",
+      "url": "https://www.runoob.com/schema/schema-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/xlink/xlink-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -663,17 +663,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/xslfo/xslfo-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
       "url": "https://www.runoob.com/aspnet/webpages-intro.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/svg/svg-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -683,17 +673,27 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/aspnet/aspnet-intro.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
       "url": "https://www.runoob.com/webservices/webservices-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/wsdl/wsdl-tutorial.html",
+      "url": "https://www.runoob.com/aspnet/aspnet-intro.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/aspnet/mvc-intro.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/rss/rss-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/xslfo/xslfo-tutorial.html",
       "level": 1,
       "status": "success"
     },
@@ -703,7 +703,22 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/aspnet/mvc-intro.html",
+      "url": "https://www.runoob.com/wsdl/wsdl-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/svg/svg-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/np/np-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/browsers/browser-information.html",
       "level": 1,
       "status": "success"
     },
@@ -723,27 +738,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/browsers/browser-information.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/rss/rss-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/hosting/hosting-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/w3c/w3c-tutorial.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/tcpip/tcpip-tutorial.html",
+      "url": "https://www.runoob.com/html/html-examples.html",
       "level": 1,
       "status": "success"
     },
@@ -753,12 +748,27 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/np/np-tutorial.html",
+      "url": "https://www.runoob.com/tcpip/tcpip-tutorial.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/html/html-examples.html",
+      "url": "https://www.runoob.com/w3c/w3c-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/hosting/hosting-tutorial.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/xml/xml-examples.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/jquery/jquery-examples.html",
       "level": 1,
       "status": "success"
     },
@@ -773,17 +783,7 @@
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/jquery/jquery-examples.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/java/java-examples.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "https://www.runoob.com/xml/xml-examples.html",
+      "url": "https://www.runoob.com/tags/html-colorpicker.html",
       "level": 1,
       "status": "success"
     },
@@ -793,27 +793,27 @@
       "status": "success"
     },
     {
+      "url": "https://www.runoob.com/java/java-examples.html",
+      "level": 1,
+      "status": "success"
+    },
+    {
       "url": "https://www.runoob.com/tags/html-ascii.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/ajx/ajax-examples.html",
+      "url": "http://www.runoob.com/fastapi/fastapi-core.html",
       "level": 1,
       "status": "success"
     },
     {
-      "url": "https://www.runoob.com/tags/html-colorpicker.html",
+      "url": "http://www.runoob.com/nlp/deep-learning-frameworks.html",
       "level": 1,
       "status": "success"
     },
     {
       "url": "http://www.runoob.com/fastapi/vscode-fastapi.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "http://www.runoob.com/fastapi/fastapi-core.html",
       "level": 1,
       "status": "success"
     },
@@ -828,7 +828,7 @@
       "status": "success"
     },
     {
-      "url": "http://www.runoob.com/nlp/generative-pre-trained-transformer.html",
+      "url": "http://www.runoob.com/nlp/python-nlp.html",
       "level": 1,
       "status": "success"
     },
@@ -838,12 +838,7 @@
       "status": "success"
     },
     {
-      "url": "http://www.runoob.com/nlp/deep-learning-frameworks.html",
-      "level": 1,
-      "status": "success"
-    },
-    {
-      "url": "http://www.runoob.com/nlp/python-nlp.html",
+      "url": "http://www.runoob.com/nlp/generative-pre-trained-transformer.html",
       "level": 1,
       "status": "success"
     },
@@ -854,6 +849,11 @@
     },
     {
       "url": "https://www.runoob.com/archives",
+      "level": 1,
+      "status": "success"
+    },
+    {
+      "url": "https://www.runoob.com/ajx/ajax-examples.html",
       "level": 1,
       "status": "success"
     }
