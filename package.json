@@ -10,7 +10,8 @@
     "node-server": "node server.js",
     "node-server2": "node server2.js",
     "node-axe": "node axe-puppeteer.js https://baike.baidu.com",
-    "node-climb": "node climb.js"
+    "node-climb": "node climb.js",
+    "node-climb-new": "node climb.js && vite --port 3001 --open"
   },
   "dependencies": {
     "axe-core": "^4.10.3",
@@ -21,7 +22,8 @@
     "express": "^5.1.0",
     "puppeteer": "^24.8.1",
     "selenium-webdriver": "^4.33.0",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.2",
