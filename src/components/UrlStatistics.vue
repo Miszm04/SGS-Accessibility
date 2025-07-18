@@ -16,9 +16,16 @@
     </div>
     <div v-else>
       <el-descriptions title="URL统计信息" border>
-        <el-descriptions-item label="总唯一URL数">{{ totalUniqueUrls }}</el-descriptions-item>
+        <!-- 入口URL（原层级0 URL） -->
+        <el-descriptions-item v-if="entryUrl" label="入口URL">
+          <a :href="entryUrl" target="_blank" rel="noopener noreferrer" class="url-link entry-url">
+            {{ entryUrl }}
+          </a>
+        </el-descriptions-item>
+        
         <el-descriptions-item label="开始时间">{{ startTime }}</el-descriptions-item>
         <el-descriptions-item label="结束时间">{{ endTime }}</el-descriptions-item>
+        <el-descriptions-item label="总唯一URL数">{{ totalUniqueUrls }}</el-descriptions-item>
         <el-descriptions-item label="层级数">{{ levelCount }}</el-descriptions-item>
       </el-descriptions>
 
@@ -52,6 +59,7 @@ export default {
       loading: true,
       error: null,
       isEmptyData: false,
+      entryUrl: '', // 现在表示层级0的URL（入口URL）
       totalUniqueUrls: 0,
       startTime: '',
       endTime: '',
@@ -68,35 +76,23 @@ export default {
   },
   methods: {
     async loadResults() {
-      // 重置状态
       this.loading = true;
       this.error = null;
       this.isEmptyData = false;
       this.urlsByLevel = {};
       this.levels = [];
+      this.entryUrl = ''; // 重置入口URL
 
       try {
-        // 使用绝对路径确保请求正确
         const jsonUrl = '/crawl_results/results.json';
-        console.log('开始加载数据:', jsonUrl);
-        
         const response = await fetch(jsonUrl);
-        console.log('请求状态:', response.status, '响应URL:', response.url);
 
         if (!response.ok) {
           throw new Error(`加载失败 (状态码: ${response.status})，请检查文件路径是否正确`);
         }
 
-        // 解析JSON并验证结构
-        let data;
-        try {
-          data = await response.json();
-          console.log('成功解析数据:', data);
-        } catch (parseError) {
-          throw new Error(`JSON解析失败: ${parseError.message}，请检查文件格式是否正确`);
-        }
+        let data = await response.json();
 
-        // 验证核心数据结构
         if (!data || typeof data !== 'object') {
           throw new Error('数据格式错误，应为JSON对象');
         }
@@ -110,24 +106,21 @@ export default {
         this.endTime = data.end_time ? new Date(data.end_time).toLocaleString() : '未知';
         this.levelCount = data.level_stats ? Object.keys(data.level_stats).length : 0;
 
-        // 处理层级数据（兼容各种异常情况）
+        // 处理层级数据
         const levelStats = data.level_stats || {};
         this.levels = Object.keys(levelStats)
-          .map(level => parseInt(level, 10)) // 确保层级为数字
-          .filter(level => !isNaN(level)) // 过滤无效层级
-          .sort((a, b) => a - b) // 按数字排序
-          .map(level => level.toString()); // 转为字符串作为标签页名称
+          .map(level => parseInt(level, 10))
+          .filter(level => !isNaN(level))
+          .sort((a, b) => a - b)
+          .map(level => level.toString());
 
-        // 按层级分组URL（兼容level为数字或字符串的情况）
+        // 按层级分组URL
         this.urlsByLevel = this.levels.reduce((acc, level) => {
           const levelNum = parseInt(level, 10);
           acc[level] = data.urls
-            .filter(item => {
-              // 兼容item.level为数字或字符串的情况
-              return parseInt(item.level, 10) === levelNum;
-            })
+            .filter(item => parseInt(item.level, 10) === levelNum)
             .map(item => ({
-              url: item.url || '未知URL', // 兼容缺失url的情况
+              url: item.url || '未知URL',
               level: item.level || '未知层级'
             }));
           return acc;
@@ -138,8 +131,10 @@ export default {
 
         // 检查是否有有效数据
         this.isEmptyData = data.urls.length === 0;
-        if (this.isEmptyData) {
-          console.log('数据中urls数组为空');
+
+        // 获取入口URL（层级0的第一个URL）
+        if (this.urlsByLevel['0'] && this.urlsByLevel['0'].length > 0) {
+          this.entryUrl = this.urlsByLevel['0'][0].url;
         }
 
       } catch (error) {
@@ -147,13 +142,11 @@ export default {
         console.error('加载数据时出错:', error);
       } finally {
         this.loading = false;
-        console.log('加载流程结束');
       }
     },
     getLevelTagType(level) {
       const levelNum = parseInt(level, 10);
       const types = ['primary', 'success', 'info', 'warning', 'danger'];
-      // 循环使用标签类型，避免层级过多时无类型可用
       return types[Math.min(levelNum, types.length - 1)];
     }
   }
@@ -165,17 +158,28 @@ export default {
   padding: 20px;
   max-width: 1400px;
   margin: 0 auto;
+  background-color: #eef1f5;
+  color: #202124;
 }
 
 .url-link {
-  color: #409eff;
+  color: #165dff;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .url-link:hover {
-  color: #185bb9;
+  color: #0e42d2;
   text-decoration: underline;
+}
+
+.entry-url {
+  display: inline-block;
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
 }
 
 .loading-container,
@@ -184,12 +188,78 @@ export default {
   margin-top: 20px;
   padding: 20px;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* 层级标签样式 */
+:deep(.el-tag) {
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+:deep(.el-tag--primary) {
+  background-color: #165dff;
+  color: #ffffff;
+}
+
+:deep(.el-tag--success) {
+  background-color: #007d40;
+  color: #ffffff;
+}
+
+:deep(.el-tag--info) {
+  background-color: #0c63e4;
+  color: #ffffff;
+}
+
+:deep(.el-tag--warning) {
+  background-color: #e67700;
+  color: #ffffff;
+}
+
+:deep(.el-tag--danger) {
+  background-color: #c92127;
+  color: #ffffff;
+}
+
+/* 增强文字对比度 */
+:deep(.el-descriptions__title) {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+:deep(.el-descriptions-item__label) {
+  color: #202124;
+  font-weight: 500;
+}
+
+:deep(.el-descriptions-item__content) {
+  color: #1a1a1a;
+}
+
+:deep(.el-table th),
+:deep(.el-table td) {
+  color: #202124;
+}
+
+:deep(.el-tabs__item) {
+  color: #3c4043;
+}
+
+:deep(.el-tabs__item.is-active) {
+  color: #165dff;
+  font-weight: 500;
 }
 
 @media (max-width: 768px) {
   .container {
     padding: 10px;
+  }
+  
+  .entry-url {
+    max-width: 250px;
   }
 }
 </style>

@@ -40,10 +40,10 @@ class Crawler {
     try {
       // 创建输出目录
       await fs.mkdir(this.outputDir, { recursive: true });
-      
+
       // 获取并解析robots.txt
       await this.fetchAndParseRobotsTxt(startUrl);
-      
+
       this.baseDomain = new URL(startUrl).hostname;
       this.addToQueue(startUrl, 0);  // 起始URL层级为0
 
@@ -74,7 +74,7 @@ class Crawler {
 
       this.results.end_time = new Date().toISOString();
       this.results.total_urls = this.visited.size;
-      
+
       // 统计各层级的URL数量
       this.visited.forEach((level, url) => {
         this.results.level_stats[level] = (this.results.level_stats[level] || 0) + 1;
@@ -85,7 +85,7 @@ class Crawler {
         this.saveResultsAsJson(),
         this.saveResultsAsExcel()
       ]);
-      
+
       console.log(`\nCrawling completed. Results saved to ${this.outputDir}`);
       console.log('层级分布：');
       Object.entries(this.results.level_stats).forEach(([level, count]) => {
@@ -118,7 +118,7 @@ class Crawler {
         console.log(`[层级 ${level}] Skipped by robots.txt: ${url}`);
         return;
       }
-      
+
       this.queued.add(url);
       this.queue.push({ url, level });
     }
@@ -129,14 +129,14 @@ class Crawler {
     try {
       const parsedUrl = new URL(url);
       const path = parsedUrl.pathname;
-      
+
       // 简单的robots.txt解析
       const disallowRules = this.robotsTxt
         .split('\n')
         .filter(line => line.trim().startsWith('Disallow:'))
         .map(line => line.split(':')[1].trim())
         .filter(rule => rule !== '');
-      
+
       return !disallowRules.some(rule => {
         if (rule === '/') return false; // 允许根路径
         if (rule.endsWith('/')) return path.startsWith(rule);
@@ -154,13 +154,13 @@ class Crawler {
       const response = await this.axiosInstance.get(url);
       if (response.status !== 200) {
         console.log(`[层级 ${currentLevel}] Skipped ${url} (Status: ${response.status})`);
-        
+
         // 处理可重试的HTTP错误
         if ([429, 500, 502, 503, 504].includes(response.status) && retries < this.maxRetries) {
           this.retryQueue.push({ url, level: currentLevel, retries: retries + 1 });
           console.log(`[层级 ${currentLevel}] Added ${url} to retry queue (${retries + 1}/${this.maxRetries})`);
         }
-        
+
         return;
       }
 
@@ -186,7 +186,7 @@ class Crawler {
       });
     } catch (error) {
       console.error(`[层级 ${currentLevel}] Failed to crawl ${url}:`, error.message);
-      
+
       // 处理网络错误重试
       if (retries < this.maxRetries) {
         this.retryQueue.push({ url, level: currentLevel, retries: retries + 1 });
@@ -207,6 +207,7 @@ class Crawler {
   async saveResultsAsJson() {
     const filePath = path.join(this.outputDir, 'results.json');
     const simplifiedResults = {
+      entry_url: this.entryUrl, // 添加入口URL字段
       start_time: this.results.start_time,
       end_time: this.results.end_time,
       total_urls: this.results.total_urls,
@@ -217,7 +218,7 @@ class Crawler {
         status: 'success'
       }))
     };
-    
+
     try {
       await fs.writeFile(filePath, JSON.stringify(simplifiedResults, null, 2));
       console.log(`Results saved as JSON: ${filePath}`);
@@ -231,24 +232,24 @@ class Crawler {
     const filePath = path.join(this.outputDir, 'results.xlsx');
     const urlsArray = Array.from(this.visited.entries())
       .map(([url, level]) => ({ URL: url, 层级: level }));
-    
+
     // 创建工作表
     const wsUrls = XLSX.utils.json_to_sheet(urlsArray);
-    
+
     // 创建层级统计数据
     const levelStatsArray = Object.entries(this.results.level_stats)
       .map(([level, count]) => ({ 层级: level, URL数量: count }));
     const wsStats = XLSX.utils.json_to_sheet(levelStatsArray);
-    
+
     // 创建工作簿并添加工作表
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, wsUrls, 'URL列表');
     XLSX.utils.book_append_sheet(wb, wsStats, '层级统计');
-    
+
     // 设置列宽
     wsUrls['!cols'] = [{ wch: 80 }, { wch: 8 }];
     wsStats['!cols'] = [{ wch: 8 }, { wch: 12 }];
-    
+
     try {
       XLSX.writeFile(wb, filePath);
       console.log(`Results saved as Excel: ${filePath}`);
