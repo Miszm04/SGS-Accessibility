@@ -29,6 +29,34 @@
         <el-descriptions-item label="层级数">{{ levelCount }}</el-descriptions-item>
       </el-descriptions>
 
+      <!-- 导出按钮区域 -->
+      <div class="export-controls">
+        <el-button 
+          type="primary" 
+          :icon="Download" 
+          @click="exportToExcel('current')"
+          :disabled="!activeTab || !urlsByLevel[activeTab]?.length"
+        >
+          导出当前层级
+        </el-button>
+        <el-button 
+          type="success" 
+          :icon="Download" 
+          @click="exportToExcel('all')"
+          :disabled="isEmptyData"
+        >
+          导出全部数据
+        </el-button>
+        <el-button 
+          type="info" 
+          :icon="Document"
+          @click="exportToExcel('summary')"
+          :disabled="isEmptyData"
+        >
+          导出统计信息
+        </el-button>
+      </div>
+
       <el-tabs type="card" v-model="activeTab" style="margin-top: 20px">
         <el-tab-pane :label="`层级 ${level} (${urlsByLevel[level].length})`" :name="level" v-for="level in levels" :key="level">
           <el-table :data="urlsByLevel[level]" border style="width: 100%; margin-top: 10px" highlight-current-row>
@@ -53,13 +81,16 @@
 </template>
 
 <script>
+import { Download, Document } from '@element-plus/icons-vue';
+import * as XLSX from 'xlsx';
+
 export default {
   data() {
     return {
       loading: true,
       error: null,
       isEmptyData: false,
-      entryUrl: '', // 现在表示层级0的URL（入口URL）
+      entryUrl: '',
       totalUniqueUrls: 0,
       startTime: '',
       endTime: '',
@@ -67,7 +98,14 @@ export default {
       levels: [],
       urlsByLevel: {},
       activeTab: '',
-      loadingTarget: null
+      loadingTarget: null,
+      allUrls: [] // 存储所有URL数据用于导出
+    };
+  },
+  setup() {
+    return {
+      Download,
+      Document
     };
   },
   mounted() {
@@ -81,7 +119,7 @@ export default {
       this.isEmptyData = false;
       this.urlsByLevel = {};
       this.levels = [];
-      this.entryUrl = ''; // 重置入口URL
+      this.entryUrl = '';
 
       try {
         const jsonUrl = '/crawl_results/results.json';
@@ -105,6 +143,9 @@ export default {
         this.startTime = data.start_time ? new Date(data.start_time).toLocaleString() : '未知';
         this.endTime = data.end_time ? new Date(data.end_time).toLocaleString() : '未知';
         this.levelCount = data.level_stats ? Object.keys(data.level_stats).length : 0;
+        
+        // 保存所有URL数据用于导出
+        this.allUrls = data.urls || [];
 
         // 处理层级数据
         const levelStats = data.level_stats || {};
@@ -148,6 +189,76 @@ export default {
       const levelNum = parseInt(level, 10);
       const types = ['primary', 'success', 'info', 'warning', 'danger'];
       return types[Math.min(levelNum, types.length - 1)];
+    },
+    exportToExcel(type) {
+      try {
+        let dataToExport = [];
+        let fileName = '';
+
+        switch (type) {
+          case 'current': // 当前层级
+            if (!this.activeTab || !this.urlsByLevel[this.activeTab]) {
+              this.$message.warning('当前层级没有数据可导出');
+              return;
+            }
+            dataToExport = this.urlsByLevel[this.activeTab].map((item, index) => ({
+              序号: index + 1,
+              URL地址: item.url,
+              层级: item.level
+            }));
+            fileName = `层级${this.activeTab}_URL列表`;
+            break;
+            
+          case 'all': // 全部数据
+            if (!this.allUrls.length) {
+              this.$message.warning('没有数据可导出');
+              return;
+            }
+            dataToExport = this.allUrls.map((item, index) => ({
+              序号: index + 1,
+              URL地址: item.url,
+              层级: item.level
+            }));
+            fileName = '全部URL列表';
+            break;
+            
+          case 'summary': // 统计信息
+            dataToExport = [
+              { 属性: '入口URL', 值: this.entryUrl || '无' },
+              { 属性: '开始时间', 值: this.startTime },
+              { 属性: '结束时间', 值: this.endTime },
+              { 属性: '总唯一URL数', 值: this.totalUniqueUrls },
+              { 属性: '层级数', 值: this.levelCount }
+            ];
+            fileName = 'URL统计信息';
+            break;
+        }
+
+        // 创建工作簿和工作表
+        const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, '数据');
+
+        // 设置列宽（自动调整宽度）
+        if (type === 'summary') {
+          worksheet['!cols'] = [{ wch: 15 }, { wch: 40 }];
+        } else {
+          const maxUrlLength = Math.max(...dataToExport.map(item => item.URL地址?.length || 0));
+          worksheet['!cols'] = [
+            { wch: 8 }, // 序号
+            { wch: Math.min(Math.max(maxUrlLength, 30), 100) }, // URL地址（限制在30-100字符宽）
+            { wch: 8 }  // 层级
+          ];
+        }
+
+        // 生成Excel文件并下载
+        XLSX.writeFile(workbook, `${fileName}_${new Date().toISOString().slice(0, 10)}.xlsx`);
+        
+        this.$message.success('导出成功！');
+      } catch (error) {
+        console.error('导出Excel时出错:', error);
+        this.$message.error('导出失败: ' + error.message);
+      }
     }
   }
 };
@@ -190,6 +301,13 @@ export default {
   border-radius: 4px;
   background-color: #ffffff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.export-controls {
+  margin: 20px 0;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 /* 层级标签样式 */
@@ -260,6 +378,11 @@ export default {
   
   .entry-url {
     max-width: 250px;
+  }
+  
+  .export-controls {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>
