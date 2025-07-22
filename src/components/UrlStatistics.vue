@@ -25,8 +25,8 @@
         
         <el-descriptions-item label="开始时间">{{ startTime }}</el-descriptions-item>
         <el-descriptions-item label="结束时间">{{ endTime }}</el-descriptions-item>
-        <el-descriptions-item label="总唯一URL数">{{ totalUniqueUrls }}</el-descriptions-item>
-        <el-descriptions-item label="层级数">{{ levelCount }}</el-descriptions-item>
+        <el-descriptions-item label="总唯一URL数">{{ totalUniqueUrls-1 }}</el-descriptions-item>
+        <el-descriptions-item label="层级数">{{ levelCount > 0 ? levelCount - 1 : 0 }}</el-descriptions-item>
       </el-descriptions>
 
       <!-- 导出按钮区域 -->
@@ -144,18 +144,24 @@ export default {
         this.endTime = data.end_time ? new Date(data.end_time).toLocaleString() : '未知';
         this.levelCount = data.level_stats ? Object.keys(data.level_stats).length : 0;
         
-        // 保存所有URL数据用于导出
-        this.allUrls = data.urls || [];
+        // 保存所有URL数据用于导出（排除层级0）
+        this.allUrls = (data.urls || []).filter(item => parseInt(item.level, 10) > 0);
 
-        // 处理层级数据
+        // 获取入口URL（层级0的第一个URL）
+        const level0Urls = (data.urls || []).filter(item => parseInt(item.level, 10) === 0);
+        if (level0Urls.length > 0) {
+          this.entryUrl = level0Urls[0].url;
+        }
+
+        // 处理层级数据（排除层级0）
         const levelStats = data.level_stats || {};
         this.levels = Object.keys(levelStats)
           .map(level => parseInt(level, 10))
-          .filter(level => !isNaN(level))
+          .filter(level => !isNaN(level) && level > 0)
           .sort((a, b) => a - b)
           .map(level => level.toString());
 
-        // 按层级分组URL
+        // 按层级分组URL（排除层级0）
         this.urlsByLevel = this.levels.reduce((acc, level) => {
           const levelNum = parseInt(level, 10);
           acc[level] = data.urls
@@ -171,12 +177,7 @@ export default {
         this.activeTab = this.levels[0] || '';
 
         // 检查是否有有效数据
-        this.isEmptyData = data.urls.length === 0;
-
-        // 获取入口URL（层级0的第一个URL）
-        if (this.urlsByLevel['0'] && this.urlsByLevel['0'].length > 0) {
-          this.entryUrl = this.urlsByLevel['0'][0].url;
-        }
+        this.isEmptyData = this.allUrls.length === 0;
 
       } catch (error) {
         this.error = error.message;
@@ -188,7 +189,7 @@ export default {
     getLevelTagType(level) {
       const levelNum = parseInt(level, 10);
       const types = ['primary', 'success', 'info', 'warning', 'danger'];
-      return types[Math.min(levelNum, types.length - 1)];
+      return types[Math.min(levelNum - 1, types.length - 1)];
     },
     exportToExcel(type) {
       try {
@@ -228,7 +229,7 @@ export default {
               { 属性: '开始时间', 值: this.startTime },
               { 属性: '结束时间', 值: this.endTime },
               { 属性: '总唯一URL数', 值: this.totalUniqueUrls },
-              { 属性: '层级数', 值: this.levelCount }
+              { 属性: '层级数', 值: this.levelCount > 0 ? this.levelCount - 1 : 0 }
             ];
             fileName = 'URL统计信息';
             break;
